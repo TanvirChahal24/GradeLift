@@ -96,6 +96,18 @@
         .application-form button:hover {
             background-color: #45a049;
         }
+
+        .success-message {
+            color: green;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -120,8 +132,10 @@
             "The reason I want to do this is so I can provide free and easily accessible tutoring to kids in grades K–12." - Tanvir Chahal
         </blockquote>
     </section>
+</main>
 
-    <section id="resources">
+<section id="resources">
+    <main>
         <h2>Resources</h2>
         <p>Explore curated links and materials for each subject:</p>
         <ul>
@@ -130,11 +144,13 @@
             <li><a href="https://www.readingrockets.org/" target="_blank">Reading Rockets (English)</a></li>
             <li><a href="https://www.nationalgeographic.com/" target="_blank">National Geographic (Science)</a></li>
         </ul>
-    </section>
+    </main>
+</section>
 
-    <section id="apply">
+<section id="apply">
+    <main>
         <h2>Apply to Become a Tutor</h2>
-        <form class="application-form" action="submit_application.php" method="POST" enctype="multipart/form-data">
+        <form class="application-form" id="applicationForm" enctype="multipart/form-data">
             <label for="full-name">Full Name:</label>
             <input type="text" id="full-name" name="full-name" required>
 
@@ -150,13 +166,42 @@
             <label for="why-tutor">Why do you want to become a tutor?</label>
             <textarea id="why-tutor" name="why-tutor" rows="4" required></textarea>
 
-            <label for="video-upload">Upload a short introduction video with ID (MP4 format, max 50MB):</label>
+            <label for="video-upload">Upload a short introduction video (MP4 format, max 50MB):</label>
             <input type="file" id="video-upload" name="video-upload" accept="video/mp4" required>
 
-            <button type="submit">Submit Application</button>
+            <button type="button" onclick="submitApplication()">Submit Application</button>
         </form>
-    </section>
-</main>
+
+        <div id="formFeedback" class="success-message" style="display: none;">Application submitted successfully!</div>
+        <div id="formError" class="error-message" style="display: none;">There was an error submitting your application. Please try again later.</div>
+
+        <script>
+            function submitApplication() {
+                const form = document.getElementById('applicationForm');
+                const formData = new FormData(form);
+
+                fetch('https://api.example.com/submit_application', { // Replace with your backend URL
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('formFeedback').style.display = 'block';
+                        document.getElementById('formError').style.display = 'none';
+                        form.reset();
+                    } else {
+                        throw new Error('Failed to submit application');
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    document.getElementById('formFeedback').style.display = 'none';
+                    document.getElementById('formError').style.display = 'block';
+                });
+            }
+        </script>
+    </main>
+</section>
 
 <footer>
     &copy; 2024 GradeLift | Designed by Tanvir Chahal
@@ -164,3 +209,4 @@
 
 </body>
 </html>
+
