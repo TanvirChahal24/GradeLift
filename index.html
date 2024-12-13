@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GradeLift - Free Tutoring for K-12</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(90deg, #4CAF50, #3b8d3b);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #4CAF50;
+        }
+
+        main {
+            padding: 3rem 5%;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            color: #4CAF50;
+            font-size: 2rem;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p, ul {
+            font-size: 1.1rem;
+        }
+
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .application-form {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .application-form label {
+            display: block;
+            margin: 1rem 0 0.5rem;
+            font-weight: bold;
+        }
+
+        .application-form input, .application-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .application-form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .application-form button:hover {
+            background-color: #3b8d3b;
+        }
+
+        .success-message {
+            color: green;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>GradeLift</h1>
+    <p>Your Gateway to Free K-12 Tutoring and Community Support</p>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#resources">Resources</a>
+    <a href="#apply">Apply to Tutor</a>
+</nav>
+
+<main>
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Welcome to GradeLift, a platform dedicated to providing free and accessible tutoring for students in grades K-12. 
+        Founded by Tanvir Chahal, GradeLift aims to help students excel in their studies while fostering a spirit of community service among high school volunteers.</p>
+        <p><strong>Contact:</strong> Tanvir Chahal - <a href="mailto:tchahal2025@stanner.org">tchahal2025@stanner.org</a></p>
+        <blockquote>
+            "The reason I want to do this is so I can provide free and easily accessible tutoring to kids in grades K–12." - Tanvir Chahal
+        </blockquote>
+    </section>
+
+    <section id="resources">
+        <h2>Resources</h2>
+        <p>Explore curated links and materials for each subject:</p>
+        <ul>
+            <li><a href="https://www.khanacademy.org/" target="_blank">Khan Academy (All Subjects)</a></li>
+            <li><a href="https://www.coolmathgames.com/" target="_blank">Cool Math Games (Math)</a></li>
+            <li><a href="https://www.readingrockets.org/" target="_blank">Reading Rockets (English)</a></li>
+            <li><a href="https://www.nationalgeographic.com/" target="_blank">National Geographic (Science)</a></li>
+        </ul>
+    </section>
+
+    <section id="apply">
+        <h2>Apply to Become a Tutor</h2>
+        <form class="application-form" id="applicationForm" enctype="multipart/form-data">
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" name="full-name" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="high-school">Are you in high school?</label>
+            <input type="checkbox" id="high-school" name="high-school">
+
+            <label for="parent-consent">Parental Consent (if under 18):</label>
+            <input type="checkbox" id="parent-consent" name="parent-consent"> I have parental consent.
+
+            <label for="why-tutor">Why do you want to become a tutor?</label>
+            <textarea id="why-tutor" name="why-tutor" rows="4" required></textarea>
+
+            <label for="video-upload">Upload a short introduction video (MP4 format, max 50MB):</label>
+            <input type="file" id="video-upload" name="video-upload" accept="video/mp4" required>
+
+            <button type="button" onclick="submitApplication()">Submit Application</button>
+        </form>
+
+        <div id="formFeedback" class="success-message" style="display: none;">Application submitted successfully!</div>
+        <div id="formError" class="error-message" style="display: none;">There was an error submitting your application. Please try again later.</div>
+
+        <script>
+            function submitApplication() {
+                const form = document.getElementById('applicationForm');
+                const formData = new FormData(form);
+
+                fetch('https://api.example.com/submit_application', { // Replace with your backend URL
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('formFeedback').style.display = 'block';
+                        document.getElementById('formError').style.display = 'none';
+                        form.reset();
+                    } else {
+                        throw new Error('Failed to submit application');
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    document.getElementById('formFeedback').style.display = 'none';
+                    document.getElementById('formError').style.display = 'block';
+                });
+            }
+        </script>
+    </section>
+
+</main>
+
+<footer>
+    &copy; 2024 GradeLift | Designed by Tanvir Chahal
+</footer>
+
+</body>
+</html>
